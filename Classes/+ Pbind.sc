@@ -1,0 +1,7 @@
++ Pbind {
+	
+	asPbind {
+		^ this;
+	}
+
+}

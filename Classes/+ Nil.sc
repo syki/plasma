@@ -1,0 +1,7 @@
++ Nil {
+	
+	asPbind {
+		^ Pbind.new;
+	}
+
+}

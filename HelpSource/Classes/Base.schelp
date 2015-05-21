@@ -1,0 +1,49 @@
+class:: Base
+
+summary:: Mathematics in base-N.
+
+categories:: Math
+
+description::
+Provides various exponentiation/logarithm-related functions parameterised by the given base.
+Implementation is agnostic of the underlying data type, so should work for Arrays, UGens, etc.
+
+classmethods::
+
+method:: new
+Returns a new module in the given base.
+
+instancemethods::
+
+method:: log
+Returns the logarithm of the input in the given base.
+code::
+Base (2).log (16) // -> 4
+::
+
+method:: exp
+Returns the given base to the power of the input.
+code::
+Base (2).exp (4) // -> 16
+::
+
+method:: wrap
+Wraps the input between 1 and the given base.
+Useful for things like just intonation to restrict an interval to the octave, e.g.
+code::
+var base2 = Base (2);
+var perfect5th = 3/2;
+base2.wrap (perfect5th ** (1..4)); // -> [ 1.5, 1.125, 1.688, 1.266]
+::
+
+method:: base
+Returns the given base.
+code::
+Base (2).base // -> 2
+::
+
+method:: baseLog
+Returns the natural logarithm of the given base.
+code::
+Base (2).baseLog // -> 0.693
+::

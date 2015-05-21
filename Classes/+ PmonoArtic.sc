@@ -1,0 +1,7 @@
++ PmonoArtic {
+	
+	asPmonoArtic {
+		^ this;
+	}
+
+}
