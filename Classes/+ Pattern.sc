@@ -19,8 +19,7 @@
 	}
 
 	copySeries { |first, second, last|
-		var stream = this.asStream;
-		^ stream.nextN (last + 1).copySeries (first, second, last);
+		^ this.asStream.copySeries (first, second, last);
 	}
 
 	replace { |find, replace|

@@ -4,6 +4,14 @@
 		^ this;
 	}
 
+	toLower {
+		^ this.asString.toLower.asSymbol;
+	}
+
+	toUpper {
+		^ this.asString.toUpper.asSymbol;
+	}
+
 	toLower1st {
 		^ this.asString.toLower1st.asSymbol;
 	}

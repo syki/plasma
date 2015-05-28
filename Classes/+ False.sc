@@ -1,0 +1,7 @@
++ False {
+	
+	isFalse {
+		^ true;
+	}
+
+}

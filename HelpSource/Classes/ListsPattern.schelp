@@ -1,0 +1,11 @@
+class:: ListsPattern
+
+summary:: A clone of ListPattern that can accept streams or patterns of lists as the primary argument.
+
+categories:: Pattern
+
+description::
+Abstract superclass of patterns that can accept streams or patterns of SequenceableCollections
+(in contrast with e.g. Pseq where the array is fixed).
+
+The stream of lists is typically evaluated blah blah blah.

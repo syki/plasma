@@ -27,11 +27,11 @@
 	}
 
 	toLower1st {
-		this[0].toLower ++ this[1..];
+		^ this[0].toLower ++ this[1..];
 	}
 
 	toUpper1st {
-		this[0].toUpper ++ this[1..];
+		^ this[0].toUpper ++ this[1..];
 	}
 
 	+|+ { |that|

@@ -3,7 +3,11 @@
 	if { |condition|
 		^ condition.if (this);
 	}
-	
+
+	unless { |condition|
+		^ condition.unless (this);
+	}
+		
 	precollect { |function|
 		^ { |... arguments| this.value (* arguments.collect (function)); }
 	}
