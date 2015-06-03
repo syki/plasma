@@ -1,0 +1,7 @@
++ SimpleNumber {
+	
+*	zero {
+		^ 0;
+	}
+
+}

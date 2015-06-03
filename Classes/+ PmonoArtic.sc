@@ -1,7 +1,0 @@
-+ PmonoArtic {
-	
-	asPmonoArtic {
-		^ this;
-	}
-
-}

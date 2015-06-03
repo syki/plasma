@@ -1,7 +1,7 @@
 + Nil {
 	
-	asPbind {
-		^ Pbind.new;
+	isNothing {
+		^ true;
 	}
 
 }

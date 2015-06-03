@@ -2,7 +2,7 @@
 
 	size_ { |n = 0|
 		var m = this.size;
-		if (m > n) { this.removeAllSuchThat { |e, i| i >= n }; } { this.growClear (n - m); };
+		if (m > n) { this.removeAllSuchThat { |e, i| i >= n }; } { this.growClear ((n - m).asInteger); };
 	}
 
 	resize { |n = 0|
@@ -29,11 +29,11 @@
 
 	// From plasma/Classes/Array.sc:
 
-	unrotate { |n|
+	derotate { |n|
 		^ this.rotate (n.neg);
 	}
 
-	unrotateInPlace { |n|
+	derotateInPlace { |n|
 		^ this.rotateInPlace (n.neg);
 	}
 

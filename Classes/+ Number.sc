@@ -1,7 +1,32 @@
 + Number {
 
-	isZero {
-		^ 0 == this;
+*	epsilon {
+		^ this.zero;
+	}
+
+	epsilon {
+		^ this.class.epsilon;
+	}
+
+*	zero {
+		^ this.subclassResponsibility (thisMethod);
+	}
+
+	zero {
+		^ this.class.zero;
+	}
+
+	isZero { |epsilon|
+		epsilon = epsilon ?? { this.epsilon };
+		^ this.abs < epsilon;
+	}
+
+	nonZero { |epsilon|
+		^ this.isZero (epsilon).not;
+	}
+
+	notZero { |epsilon|
+		^ this.isZero (epsilon).not;
 	}
 	
 	sqr {

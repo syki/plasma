@@ -7,25 +7,16 @@
 	unless { |condition|
 		^ condition.unless (this);
 	}
-		
-	precollect { |function|
-		^ { |... arguments| this.value (* arguments.collect (function)); }
-	}
 
-	ordinalize {
-		^ this.precollect (_ + 1);
-	}
-
-	cardinalize {
-		^ this.precollect (_ - 1);
-	}
-
-	deordinalize {
-		^ this.cardinalize;
-	}
-
-	decardinalize {
-		^ this.ordinalize;
+	debounce { |delay = 1|
+		var then = 0;
+		^ { |... arguments|
+			var now = SystemClock.seconds;
+			if (now - then > delay) {
+				then = now;
+				this.valueEnvir (* arguments);
+			};
+		}
 	}
 
 }

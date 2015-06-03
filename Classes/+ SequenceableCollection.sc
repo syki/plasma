@@ -4,6 +4,10 @@
 		^ arguments.reduce (_ ++ _);
 	}
 
+	singleton {
+		^ this.first;
+	}
+
 	flip { // A non-wrapping flop.
 		^ this.flipWithArray { |array| array };
 	}
@@ -43,8 +47,32 @@
 		this.do { |e, i| each.(i, e) };
 	}
 
+	indicesValues {
+		^ IdentityDictionary.newFromKeys ((0..this.size), this[_]);
+	}
+
 	wrapIndex { |index|
 		^ index % this.size;
+	}
+
+	asPseq { |... arguments|
+		^ Pseq (this, * arguments);
+	}
+
+	gather { |predicate|
+		var result = this.species.new, results = this.species.new;
+		var append = { unless (result.isEmpty) { results = results.add (result) } };
+		predicate ?? { predicate = (_.notNil) };
+		this.do { |item|
+			result = if (predicate.value (item)) {
+				result.add (item);
+			} {
+				append.value;
+				this.species.new;
+			};
+		};
+		append.value;
+		^ results;
 	}
 
 }

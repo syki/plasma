@@ -79,4 +79,24 @@
 		^ this * mul + add;
 	}
 
+	tied { |... keys|
+		^ this.asPtie (* keys);
+	}
+
+	slurred { |... keys|
+		^ this.asPslur (* keys);
+	}
+
+	asPtie { |... keys|
+		^ Ptie (this, * keys);
+	}
+
+	asPslur { |... keys|
+		^ Pslur (this, * keys);
+	}
+
+	asPmonopoly {
+		^ Pmonopoly (this);
+	}
+
 }

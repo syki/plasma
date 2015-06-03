@@ -38,4 +38,8 @@
 		^ this ++ if (this.last == $| or: { that.first == $|; }) { that; } { $| ++ that; };
 	}
 
+	isNothing {
+		^ this.isEmpty;
+	}
+
 }

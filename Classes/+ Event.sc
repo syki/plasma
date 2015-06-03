@@ -12,4 +12,13 @@
 		^ with1 (Event.newFrom (pairs));
 	}
 
+	populateFromSynthDesc { |synthLib|
+		this.use {
+			~synthLib  ?? { ~synthLib  = synthLib ? SynthDescLib.global };
+			~synthDesc ?? { ~synthDesc = ~synthLib.match (~instrument) };
+			~hasGate   ?? { ~hasGate = if (~synthDesc.notNil) { ~synthDesc.hasGate } { false } };
+			~msgFunc   ?? { ~msgFunc = if (~synthDesc.notNil) { ~synthDesc.msgFunc } { ~defaultMsgFunc } };
+		}
+	}
+
 }

@@ -24,4 +24,7 @@
 		^ thisValue;
 	}
 
+	madd { |mul = 1, add = 0|
+		^ this * mul + add;
+	}
 }

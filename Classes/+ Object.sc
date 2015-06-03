@@ -39,4 +39,8 @@
 		^ false;
 	}
 
+	isNothing {
+		^ false;
+	}
+
 }

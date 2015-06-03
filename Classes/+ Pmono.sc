@@ -1,7 +1,0 @@
-+ Pmono {
-	
-	asPmono {
-		^ this;
-	}
-
-}

@@ -1,0 +1,7 @@
++ Pseq {
+	
+	asPseq {
+		^ this;
+	}
+
+}
