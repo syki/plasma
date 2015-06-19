@@ -27,4 +27,13 @@
 	madd { |mul = 1, add = 0|
 		^ this * mul + add;
 	}
+
+	isRestify {
+		^ this.collect (_.isZero);
+	}
+
+	freqify {
+		^ this.replace (0, \rest);
+	}
+
 }

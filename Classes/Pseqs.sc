@@ -29,7 +29,7 @@ Pseqs : ListsPattern {
 	}
 
 	run { |event, function|
-		lists.asStream.doWith (event, function);
+		lists.asPattern.asStream.doWith (event, function);
 	}
 
 }

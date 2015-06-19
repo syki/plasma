@@ -59,8 +59,37 @@
 		^ { |i| this.suffix (i + 1) } ! (this.size);
 	}
 
+	asPbinds {
+		^ this.collect ({ |p| if (p.respondsTo (\asPbind)) { p.asPbind } { p } });
+	}
+
 	asPpar { |repeats = 1|
-		^ Ppar (this.collect ({ |p| if (p.respondsTo (\asPbind)) { p.asPbind } { p } }), repeats);
+		^ Ppar (this.asPbinds, repeats);
+	}
+
+	asPfsmarg {
+		var fsm = this;
+
+		unless (fsm.first.isArray) { fsm = [[0]] ++ fsm };
+
+		if (this.size.isEven) {
+			// The final value has been given, so transition to the terminal state.
+			fsm = fsm ++ [[this.size >> 1], nil, nil];
+		} {
+			if (this.last.notNil) {
+				// The terminal state has not been supplied.
+				fsm = fsm ++ [nil, nil];
+			};
+		};
+		^ fsm;
+	}
+
+	asPfsm { |repeats = 1|
+		^ Pfsm (this.asPfsmarg, repeats);
+	}
+
+	isLiteral {
+		^ this.mutable.not;
 	}
 
 }

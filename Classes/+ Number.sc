@@ -18,17 +18,25 @@
 
 	isZero { |epsilon|
 		epsilon = epsilon ?? { this.epsilon };
-		^ this.abs < epsilon;
+		^ this.abs <= epsilon;
 	}
 
-	nonZero { |epsilon|
-		^ this.isZero (epsilon).not;
+	asOdd {
+		^ this.asEven + 1;
 	}
 
-	notZero { |epsilon|
-		^ this.isZero (epsilon).not;
+	asEven {
+		^ this * 2;
 	}
-	
+
+	inc { |amount = 1|
+		^ this + amount;
+	}
+
+	dec { |amount = 1|
+		^ this - amount;
+	}
+
 	sqr {
 		^ this * this;
 	}
@@ -39,6 +47,14 @@
 
 	unv { // Unitary inversion, or unversion.
 		^ 1 - this;
+	}
+
+	+/ { |that|
+		^ (this + that) / that;
+	}
+
+	divWithRemainder { |that|
+		^ (this / that).floor.pair (this % that);
 	}
 
 	bifactors {

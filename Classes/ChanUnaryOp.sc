@@ -1,4 +1,4 @@
-ChanUnaryOp : ChanFunction { 
+ChanUnaryOp : Chan { 
 
 	var operator, receiver;
 
@@ -10,8 +10,9 @@ ChanUnaryOp : ChanFunction {
 		^ receiver.value.perform (operator);
 	}
 
-	load {
+	prepare {
 		receiver.do { |inValue|
+			if (inValue.isNil) { ^ this.finish };
 			this.put (inValue.perform (operator));
 		};
 	}

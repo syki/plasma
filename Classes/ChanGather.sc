@@ -1,4 +1,4 @@
-ChanGather : ChanFunction { 
+ChanGather : Chan { 
 
 	var source, predicate;
 
@@ -6,15 +6,16 @@ ChanGather : ChanFunction {
 		# source, predicate = arguments;
 	}
 
-	load {
+	prepare {
 		var result;
-		source.do { |value|
-			if (predicate.(value)) {
+		source.do { |inValue|
+			if (inValue.isNil) { ^ this.finish };
+			if (predicate.(inValue)) {
 				result ?? {
-					result = Chan.new (source.value);
+					result = Chan.new (inValue);
 					this.put (result);
 				};
-				result.put (value);
+				result.put (inValue);
 			} {
 				result.put (nil);
 				result = nil;

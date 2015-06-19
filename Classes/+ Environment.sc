@@ -1,5 +1,9 @@
 + Environment {
 
+	reuse { |... arguments|
+		this.use (* arguments);
+	}
+
 	usedValueAt { |key|
 		^ this.use { this.valueAt (key) };
 	}

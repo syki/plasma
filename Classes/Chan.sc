@@ -1,17 +1,33 @@
 Chan : AbstractHandedFunction {
 	
-	var <> subscribers, <> value;
+	var < subscribers, < value;
 
-*	new { |initialValue|
-		^ super.new.subscribers_ (List.new).value_ (initialValue);
+*	new { |... arguments|
+		^ super.new.preinitialize.arguments_ (arguments).postinitialize;
+	}
+
+	preinitialize {
+		subscribers = List.new;
+	}
+
+	arguments_ { |arguments|
+		value = arguments.first;
+	}
+
+	postinitialize {
+		this.initializeValue;
+		this.prepare;
 	}
 
 	initializeValue {
-		value = this.initialValue;
+		this.initialValue !? { value = this.initialValue };
 	}
 
 	initialValue {
 		^ nil;
+	}
+
+	prepare {
 	}
 
 	asStream {
@@ -19,20 +35,34 @@ Chan : AbstractHandedFunction {
 	}
 
 	embedInStream { |inEvent|
-		loop { value.yield };
+		while { value.notNil } { value.yield };
+		^ inEvent;
 	}
 
-	put { |... arguments|
-		subscribers.do { |subscriber| subscriber.value (* arguments) };
-		value = if (arguments.isSingleton) { arguments.singleton } { nil };
+	put { |argument|
+		subscribers.do { |subscriber| subscriber.value (argument) };
+		value = argument;
 	}
 
 	do { |callback|
 		subscribers = subscribers.add (callback);
 	}
 
+	finish {
+		this.put (nil);
+		this.subscribers = nil;
+	}
+
+	collect { |function|
+		^ ChanCollect (this, function);
+	}
+
 	gather { |predicate|
 		^ ChanGather (this, predicate);
+	}
+
+	gesture {
+		^ this.gather { |argument| argument.notNil and: argument.nonZero };
 	}
 
 	++ { |that|

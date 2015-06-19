@@ -1,5 +1,9 @@
 + Pattern {
 
+*	fibonacci {
+		^ Precurring (#[1, 1], _ + _);
+	}
+
 *	fill { |... arguments|
 		^ this.dispatchOnArity (thisMethod, * arguments);
 	}
@@ -63,10 +67,6 @@
 		^ this / 2;
 	}
 
-	sqr {
-		^ this * this;
-	}
-
 	inv {
 		^ 1 / this;
 	}
@@ -97,6 +97,18 @@
 
 	asPmonopoly {
 		^ Pmonopoly (this);
+	}
+
+	isRestify {
+		^ this.collect (_.isZero);
+	}
+
+	freqify {
+		^ this.replace (0, \rest);
+	}
+
+	asPattern {
+		^ this;
 	}
 
 }

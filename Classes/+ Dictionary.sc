@@ -28,12 +28,20 @@
 		^ this.atAll (keys).collect (_.valueEnvir);
 	}
 
+	asPmonopoly {
+		^ this.asPbind.asPmonopoly;
+	}
+
 	asPbind {
 		^ Pbind (* this.getPairs);
 	}
 
 	asPblur { |... keys|
 		^ this.asPbind.asPslur (* keys).asPmonopoly;
+	}
+
+	++ { |that|
+		^ this.copy.putAll (that);
 	}
 
 }

@@ -31,6 +31,54 @@
 		^ this.flipWith { |... arguments| function.value (arguments); };
 	}
 
+	keepUntilNil {
+		^ this.keepUntil (_.isNil);	
+	}
+
+	keepUntilZero {
+		^ this.keepUntil (_.isZero);	
+	}
+
+	keepUntil { |predicate|
+		^ this.keep (this.detectIndex (predicate));
+	}
+
+	keepWhile { |predicate|
+		^ this.keepUntil (predicate.not);
+	}
+
+	dropUntil { |predicate|
+		^ this.drop (this.detectIndex (predicate));
+	}
+
+	dropWhile { |predicate|
+		^ this.dropUntil (predicate.not);
+	}
+
+	dropWhileNil {
+		^ this.dropWhile (_.isNil);
+	}
+
+	dropWhileZero {
+		^ this.dropWhile (_.isZero);
+	}
+
+	indexOfNil {
+		^ this.indexOfEqual (nil);
+	}
+
+	indexOf0 {
+		^ this.indexOfEqual (0);
+	}
+
+	indexOf1 {
+		^ this.indexOfEqual (1);
+	}
+
+	indicesOfNil {
+		^ this.indicesOfEqual (nil);
+	}
+
 	indicesOf0 {
 		^ this.indicesOfEqual (0);
 	}
@@ -73,6 +121,18 @@
 		};
 		append.value;
 		^ results;
+	}
+
+	gesture {
+		^ this.gather { |argument| argument.notNil and: argument.nonZero };
+	}
+
+	asBigEndianInteger {
+		^ this.reverse.asLittleEndianInteger;
+	}
+
+	asLittleEndianInteger {
+		^ this.collect { |n, i| 1 << i * n }.sum;
 	}
 
 }

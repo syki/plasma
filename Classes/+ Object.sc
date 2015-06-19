@@ -31,6 +31,23 @@
 		(format ++ "\n").postf (this, * arguments);
 	}
 
+	tap { |function|
+		function.value (this);
+		^ this;
+	}
+
+	nonZero { |epsilon|
+		^ this.isZero (epsilon).not;
+	}
+
+	notZero { |epsilon|
+		^ this.isZero (epsilon).not;
+	}
+	
+	isZero {
+		^ false;
+	}
+
 	isTrue {
 		^ false;
 	}
@@ -40,6 +57,18 @@
 	}
 
 	isNothing {
+		^ false;
+	}
+
+	isChan {
+		^ false;
+	}
+
+	asPattern {
+		^ Pn (this);
+	}
+
+	isLiteral {
 		^ false;
 	}
 

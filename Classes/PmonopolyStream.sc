@@ -12,8 +12,8 @@ PmonopolyStream : FilterPatternStream {
 	}
 
 	populateEventWithDefaults { |event|
-		this.use {
-			~sustain = ~sustain.value ? this.delta;
+		event.use {
+			~sustain = ~sustain.value ? event.delta;
 			~type = \monoSet;
 		};
 	}

@@ -24,6 +24,22 @@
 		^ this.reject (_.isNothing);
 	}
 
+	asOdd {
+		^ this.asEven + 1;
+	}
+
+	asEven {
+		^ this * 2;
+	}
+
+	inc { |amount = 1|
+		^ this + amount;
+	}
+
+	dec { |amount = 1|
+		^ this - amount;
+	}
+
 	half {
 		^ this.collect (_ / 2);
 	}
@@ -34,6 +50,10 @@
 
 	unv { // Unitary inversion, or unversion.
 		^ 1 - this;
+	}
+
+	+/ { |that|
+		^ (this + that) / that;
 	}
 
 	uniq {
@@ -53,8 +73,21 @@
 		}
 	}
 
+	replace { |find, replace|
+		find = find.asArray;
+		^ this.collect { |it| if (find.includes (it)) { replace } { it } };
+	}
+
 	isNothing {
 		^ this.isEmpty;
+	}
+
+	isRestify {
+		^ this.collect (_.isZero);
+	}
+
+	freqify {
+		^ this.replace (0, \rest);
 	}
 
 }
